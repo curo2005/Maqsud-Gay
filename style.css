@@ -1,0 +1,292 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* ====== Экран с вопросом (Quiz Overlay) ====== */
+.quiz-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #0f3d91, #1b263b, #0033cc);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: overlayFadeIn 0.5s ease forwards;
+}
+
+/* Анимация появления */
+
+
+.quiz-box {
+  background: linear-gradient(145deg, #1b263b, #0d1b2a);
+  padding: 30px 25px;
+  border-radius: 20px;
+  box-shadow: 0 10px 35px rgba(0,120,255,0.5);
+  text-align: center;
+  width: 340px;
+  color: white;
+  font-family: "Poppins", Arial, sans-serif;
+  position: relative;
+  animation: boxPop 0.4s ease;
+}
+
+/* Анимация появления блока */
+@keyframes boxPop {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.quiz-box input {
+  width: 80%;
+  padding: 10px;
+  margin: 12px 0;
+  border-radius: 8px;
+  border: 1px solid #0033cc;
+  background-color: #0d1b2a;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.quiz-box input:focus {
+  outline: none;
+  border-color: #1b8cff;
+  box-shadow: 0 0 10px #1b8cff;
+}
+
+.quiz-box button {
+  background: linear-gradient(135deg, #0033cc, #1b263b, #0f3d91);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(0,120,255,0.5);
+}
+
+.quiz-box button:hover {
+  background: linear-gradient(135deg, #1b8cff, #0033cc, #1b263b);
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(0,150,255,0.7);
+}
+
+
+/* Основной сайт */
+.main-content {
+  display: none;
+  padding: 50px;
+  text-align: center;
+  position: relative;
+}
+
+/* ====== Общий стиль ====== */
+body {
+  margin: 0;
+  font-family: "Poppins", Arial, sans-serif;
+  background: linear-gradient(135deg, #0d1b2a, #1b263b); /* темный синий градиент */
+  color: #ffffff;
+  line-height: 1.6;
+  text-align: center;
+  overflow-x: hidden;
+  transition: background 0.5s ease;
+}
+
+/* ====== Хедер ====== */
+header.header {
+  background: linear-gradient(135deg, #0f3d91, #1b263b);
+  color: white;
+  padding: 60px 20px;
+  box-shadow: 0 6px 25px rgba(0,0,0,0.5);
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+
+header h1 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  text-shadow: 0 3px 10px rgba(0,0,0,0.7);
+  transition: transform 0.4s ease;
+}
+
+header h1:hover {
+  transform: scale(1.05) rotate(-2deg);
+}
+
+/* ====== Герой-секция ====== */
+.hero {
+  padding: 60px 20px;
+  position: relative;
+}
+
+.profile-pic {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 6px solid #1b263b;
+  box-shadow: 0 12px 25px rgba(0,100,255,0.5);
+  margin-bottom: 30px;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.profile-pic:hover {
+  transform: scale(1.08) rotate(-2deg);
+  box-shadow: 0 15px 35px rgba(0,120,255,0.7);
+}
+
+/* ====== Кнопки ====== */
+.btn {
+  display: inline-block;
+  background: linear-gradient(135deg, #0f3d91, #1b263b, #0033cc);
+  color: white;
+  padding: 16px 35px;
+  border-radius: 35px;
+  text-decoration: none;
+  margin-top: 25px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 6px 25px rgba(0,100,255,0.5);
+}
+
+.btn:hover {
+  transform: scale(1.12) translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0,150,255,0.7);
+  background: linear-gradient(135deg, #0033cc, #1b263b, #0f3d91);
+}
+
+/* ====== Секции ====== */
+.skills, .projects, .contact {
+  padding: 50px 20px;
+  background: linear-gradient(145deg, #0a1a2b, #1b263b, #0d1b2a);
+  border-radius: 25px;
+  width: 85%;
+  max-width: 1000px;
+  margin: 50px auto;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.skills:hover, .projects:hover, .contact:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 50px rgba(0,0,255,0.5);
+}
+
+/* ====== Карточки ====== */
+.skill-cards, .project-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.card {
+  background: linear-gradient(135deg, #0f3d91, #1b263b, #0033cc);
+  padding: 30px 40px;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+  transition: all 0.35s ease, filter 0.35s ease;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 15px 45px rgba(0,120,255,0.7);
+  filter: brightness(1.15);
+}
+
+/* ====== Формы ====== */
+input, textarea {
+  width: 320px;
+  padding: 14px;
+  margin: 10px 5px;
+  border-radius: 12px;
+  border: 1px solid #1b263b;
+  background-color: #0d1b2a;
+  color: #ffffff;
+  box-sizing: border-box;
+  display: inline-block;
+  vertical-align: top;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: #0033cc;
+  box-shadow: 0 0 15px rgba(0,150,255,0.5);
+}
+
+/* ====== Футер ====== */
+footer {
+  background: linear-gradient(135deg, #0f3d91, #1b263b, #0033cc);
+  color: white;
+  padding: 30px;
+  box-shadow: 0 -6px 30px rgba(0,0,0,0.5);
+}
+
+/* ====== Фото при наведении ====== */
+.hover-photo {
+  width: 340px;
+  height: 340px;
+  border-radius: 15px;
+  display: none;
+  position: fixed; /* фиксированное позиционирование */
+  top: 160%;         /* по вертикали центр */
+  left: 50%;        /* по горизонтали центр */
+  transform: translate(-50%, -50%); /* центрируем точно по центру */
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  box-shadow: 0 12px 35px rgba(0,120,255,0.5);
+  z-index: 10000; /* выше всего, чтобы не перекрывалось */
+}
+
+.card:hover + .hover-photo {
+  display: block;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.05); /* небольшое увеличение при hover */
+}
+
+
+/* ====== Центрированный прямоугольник ====== */
+.center-rectangle {
+  width: 600px;
+  height: 300px;
+  margin: 50px auto;
+  background: linear-gradient(135deg, #0f3d91, #1b263b, #0033cc);
+  border-radius: 25px;
+  box-shadow: 0 15px 50px rgba(0,120,255,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  color: #ffffff;
+  font-weight: 700;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, filter 0.35s ease;
+}
+
+.center-rectangle:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 20px 60px rgba(0,150,255,0.6);
+  filter: brightness(1.15);
+}
+
+/* ====== Подсветка и свечение ====== */
+@keyframes blueGlow {
+  0% { box-shadow: 0 0 15px #0033cc; }
+  50% { box-shadow: 0 0 25px #1b263b, 0 0 35px #0033cc; }
+  100% { box-shadow: 0 0 15px #0f3d91; }
+}
+
+.card:hover, .btn:hover, .center-rectangle:hover {
+  animation: blueGlow 2s infinite alternate;
+}

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Показ видео</title>
+<style>
+  body {
+    margin: 0;
+    font-family: "Poppins", Arial, sans-serif;
+    background: linear-gradient(135deg, #0d1b2a, #1b263b);
+    color: #ffffff;
+    text-align: center;
+    padding-top: 50px;
+  }
+
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px; /* расстояние между видео и текстом */
+    margin-top: 40px;
+  }
+
+  video {
+    display: none;
+    width: 400px;
+    border-radius: 10px;
+  }
+
+  .text-box {
+    display: none;
+    width: 350px;
+    background: linear-gradient(145deg, #14213d, #1b263b);
+    border: 2px solid #4a90e2;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.6);
+    padding: 20px;
+    text-align: left;
+  }
+
+  .text-box h1 {
+    color: #4a90e2;
+    font-size: 22px;
+    margin-bottom: 15px;
+  }
+
+  .text-box p {
+    font-size: 15px;
+    color: #dbe9ff;
+    margin: 8px 0;
+  }
+
+  button {
+    padding: 12px 25px;
+    font-size: 16px;
+    background-color: #1b263b;
+    color: #ffffff;
+    border: 2px solid #4a90e2;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin: 10px;
+  }
+
+  button:hover {
+    background-color: #4a90e2;
+  }
+</style>
+</head>
+<body>
+
+<!-- Кнопки -->
+<div>
+  <button onclick="showVideo()">Показать видео</button>
+  <button onclick="showTextBox()">Показать правила</button>
+</div>
+
+<!-- Контейнер для видео и текста -->
+<div class="container">
+  <video id="myVideo" controls>
+    <source src="video/video.mp4" type="video/mp4">
+    Ваш браузер не поддерживает видео.
+  </video>
+
+  <div class="text-box" id="rulesBox">
+    <h1>Поздравление - Ахуенного меня</h1>
+   
+    <p>мне лень долго думать и писать,</p>
+    <p>потратил это на создание сайта,</p>
+    <p>так что просто и ясно - С ДР!</p>
+  </div>
+</div>
+
+<script>
+function showVideo() {
+  const vid = document.getElementById('myVideo');
+  vid.style.display = 'block';
+  vid.play();
+}
+
+function showTextBox() {
+  const box = document.getElementById('rulesBox');
+  box.style.display = 'block';
+}
+</script>
+
+</body>
+</html>

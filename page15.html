@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Вознаграждение</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(180deg, #ffd6d6 0%, #ffe0b3 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+
+  img {
+    display: none;
+    margin-bottom: 20px;
+    width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 5px;
+    background-color: #ffd6d6; /* мягкий цвет под фон */
+    color: #8b6a60;
+    border: 1px solid #f2b8b8;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  button:hover {
+    background-color: #ffbaba; /* чуть ярче при наведении */
+  }
+</style>
+</head>
+<body>
+
+
+
+
+<img id="img2" src="images/cake.png" alt="Картинка 2">
+
+<div>
+  
+  <button onclick="showImage('img2')">мне стало лень анимировать торт , так что обойдешься обычным</button>
+</div>
+
+<script>
+function showImage(id) {
+  
+  const img2 = document.getElementById('img2');
+
+  
+  img2.style.display = 'none';
+
+  document.getElementById(id).style.display = 'block';
+}
+</script>
+
+</body>
+</html>
