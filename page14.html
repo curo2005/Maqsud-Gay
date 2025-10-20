@@ -220,7 +220,7 @@ function move() {
     gameInterval = setInterval(move, speed);
     randomFood();
 
-   if(score === 2 && !reached20) {
+   if(score === 20 && !reached20) {
   reached20 = true;
   modal.style.display = 'flex';
   continueBtn.style.display = 'inline-block';

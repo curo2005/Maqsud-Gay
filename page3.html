@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Показ видео</title>
+
 <style>
   body {
     margin: 0;
@@ -51,21 +52,28 @@
     margin: 8px 0;
   }
 
-  button {
-    padding: 12px 25px;
-    font-size: 16px;
-    background-color: #1b263b;
-    color: #ffffff;
-    border: 2px solid #4a90e2;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.3s;
-    margin: 10px;
-  }
+  button,
+.exit-btn {
+  display: inline-block;
+  padding: 12px 28px;
+  background: linear-gradient(135deg, #0a1a3f, #162b5c);
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  cursor: pointer;
+  transition: 0.3s;
+}
 
-  button:hover {
-    background-color: #4a90e2;
-  }
+button:hover,
+.exit-btn:hover {
+  background: linear-gradient(135deg, #162b5c, #243a73);
+  transform: scale(1.05);
+}
+
 </style>
 </head>
 <body>
@@ -73,13 +81,14 @@
 <!-- Кнопки -->
 <div>
   <button onclick="showVideo()">Показать видео</button>
-  <button onclick="showTextBox()">Показать правила</button>
+  <button onclick="showTextBox()">Показать поздравление</button>
+  <a href="index.html" class="exit-btn"> На главную</a>
 </div>
 
 <!-- Контейнер для видео и текста -->
 <div class="container">
   <video id="myVideo" controls>
-    <source src="video/video.mp4" type="video/mp4">
+    <source src="video/oruc.mp4" type="video/mp4">
     Ваш браузер не поддерживает видео.
   </video>
 

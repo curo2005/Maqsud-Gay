@@ -18,13 +18,13 @@
   }
 
   .text-box {
-    width: 70%;
-    max-width: 900px;
-    height: 300px;
+    width: 85%;
+    max-width: 1100px;
+    height: 420px;
     background: #1b263b;
     border: 2px solid #0a1a3f;
     border-radius: 20px;
-    padding: 20px;
+    padding: 25px;
     text-align: center;
     box-shadow: 5px 5px 15px rgba(0,0,0,0.7), -5px -5px 15px rgba(0,0,0,0.3);
     display: flex;
@@ -33,71 +33,128 @@
     flex-wrap: wrap;
   }
 
-  .text-box img {
-    max-height: 260px;
-    width: auto;
-    border-radius: 10px;
+  .media {
+    position: relative;
+  }
+
+  img, video {
+    width: 300px;
+    height: 340px;
+    object-fit: cover;
+    border-radius: 14px;
     cursor: pointer;
-    margin: 0 5px;
+    margin: 0 10px;
+    transition: opacity 0.3s ease;
+  }
+
+  video {
+    display: none;
+  }
+
+  /* Замок */
+  .lock {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 70px;
+    color: rgba(255,255,255,0.8);
+    pointer-events: none;
+    transition: opacity 0.8s ease;
+  }
+
+  .locked img {
+    opacity: 0.4;
+    filter: grayscale(90%);
+  }
+
+  .locked .lock {
+    opacity: 1;
+  }
+
+  .unlocked .lock {
+    opacity: 0;
   }
 
   .btn {
-    margin-top: 20px;
-    padding: 12px 30px;
-    background: #0a1a3f;
-    border: 2px solid #0a1a3f;
-    border-radius: 12px;
-    color: white;
+    margin-top: 25px;
+    padding: 14px 35px;
+    background: linear-gradient(135deg, #0a1a3f, #162b5c);
+    border: none;
+    border-radius: 14px;
+    color: #ffffff;
     font-weight: 600;
     cursor: pointer;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 18px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    transition: all 0.3s ease;
+    display: inline-block;
   }
 
   .btn:hover {
-    background: #1b263b;
-  }
-
-  @media(max-width: 650px) {
-    .text-box {
-      width: 90%;
-      height: auto;
-      flex-direction: column;
-    }
-    .text-box img {
-      max-height: 180px;
-      max-width: 80%;
-      margin: 10px 0;
-    }
-    .btn { padding: 10px 25px; font-size: 14px; }
+    background: linear-gradient(135deg, #162b5c, #243a73);
+    transform: scale(1.05);
   }
 </style>
 </head>
 <body>
 
 <div class="text-box">
-  <img id="img1" src="images/maqsud.jpg" alt="Картинка 1">
-  <img id="img2" src="images/maqsud.jpg" alt="Картинка 2">
-  <img id="img3" src="images/maqsud.jpg" alt="Картинка 3">
+  <div class="media" id="m1">
+    <img src="images/maqsud.jpg" alt="Фото 1" id="img1">
+    <video id="video1" src="video/edit1.mp4" controls></video>
+  </div>
+  <div class="media locked" id="m2">
+    <img src="images/maqsud.jpg" alt="Фото 2" id="img2">
+    <div class="lock">🔒</div>
+    <video id="video2" src="video/edit2.mp4" controls></video>
+  </div>
+  <div class="media locked" id="m3">
+    <img src="images/maqsud.jpg" alt="Фото 3" id="img3">
+    <div class="lock">🔒</div>
+    <video id="video3" src="video/edit3.mp4" controls></video>
+  </div>
 </div>
 
 <a href="index.html" class="btn">На главную</a>
 
 <script>
-  const images1 = ["images/maqsud.jpg", "images/maqa.jpg", "images/emin.jpg"];
-  const images2 = ["images/maqsud.jpg", "images/azad.jpg", "images/oruc.jpg"];
-  const images3 = ["images/boqdan.jpg", "images/nazrin.jpg", "images/nicat.jpg"];
-
-  const imgElements = [
-    { el: document.getElementById("img1"), images: images1, index: 0 },
-    { el: document.getElementById("img2"), images: images2, index: 0 },
-    { el: document.getElementById("img3"), images: images3, index: 0 }
+  const sequence = [
+    { img: document.getElementById("img1"), vid: document.getElementById("video1"), next: "m3" },
+    { img: document.getElementById("img3"), vid: document.getElementById("video3"), next: "m2" },
+    { img: document.getElementById("img2"), vid: document.getElementById("video2"), next: null }
   ];
 
-  imgElements.forEach(obj => {
-    obj.el.addEventListener("click", () => {
-      obj.index = (obj.index + 1) % obj.images.length;
-      obj.el.src = obj.images[obj.index];
+  let activeVideo = null;
+
+  sequence.forEach(step => {
+    step.img.addEventListener("click", () => {
+      if (activeVideo && !activeVideo.paused) return;
+
+      const parent = step.img.parentElement;
+      if (parent.classList.contains("locked")) return; // если заблокировано
+
+      step.img.style.display = "none";
+      step.vid.style.display = "block";
+      step.vid.play();
+      activeVideo = step.vid;
+
+      step.vid.addEventListener("ended", () => {
+        activeVideo = null;
+        if (step.next) {
+          const nextBlock = document.getElementById(step.next);
+          nextBlock.classList.remove("locked");
+          nextBlock.classList.add("unlocked");
+
+          // через 1.5 секунды убираем замок полностью
+          setTimeout(() => {
+            const lock = nextBlock.querySelector(".lock");
+            if (lock) lock.remove();
+            nextBlock.classList.remove("unlocked");
+          }, 1500);
+        }
+      }, { once: true });
     });
   });
 </script>
