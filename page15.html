@@ -23,13 +23,26 @@
     width: 300px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+
+  img:hover {
+    transform: scale(1.05);
+  }
+
+  video {
+    display: none;
+    width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
   }
 
   button {
     padding: 10px 20px;
     font-size: 16px;
     margin: 5px;
-    background-color: #ffd6d6; /* мягкий цвет под фон */
+    background-color: #ffd6d6;
     color: #8b6a60;
     border: 1px solid #f2b8b8;
     border-radius: 8px;
@@ -38,31 +51,37 @@
   }
 
   button:hover {
-    background-color: #ffbaba; /* чуть ярче при наведении */
+    background-color: #ffbaba;
   }
 </style>
 </head>
 <body>
 
+  <!-- картинка -->
+  <img id="cakeImg" src="images/cake.png" alt="Торт" onclick="showVideo()">
 
+  <!-- видео -->
+  <video id="cakeVideo" controls>
+    <source src="video/edit4.mp4" type="video/mp4">
+    Ваш браузер не поддерживает видео.
+  </video>
 
-
-<img id="img2" src="images/cake.png" alt="Картинка 2">
-
-<div>
-  
-  <button onclick="showImage('img2')">мне стало лень анимировать торт , так что обойдешься обычным</button>
-</div>
+  <!-- кнопка -->
+  <button onclick="showImage()">мне стало лень анимировать торт , так что обойдешься обычным</button>
 
 <script>
-function showImage(id) {
-  
-  const img2 = document.getElementById('img2');
+function showImage() {
+  // показываем картинку
+  document.getElementById("cakeImg").style.display = "block";
+}
 
-  
-  img2.style.display = 'none';
+function showVideo() {
+  const img = document.getElementById("cakeImg");
+  const video = document.getElementById("cakeVideo");
 
-  document.getElementById(id).style.display = 'block';
+  img.style.display = "none";    // скрыть картинку
+  video.style.display = "block"; // показать видео
+  video.play();                  // запустить видео
 }
 </script>
 
